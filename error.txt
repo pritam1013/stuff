@@ -1,0 +1,43 @@
+113272749672
+
+refresh server ...terminate a port 
+///////////////////////////////
+
+netstat -ano | findstr 8080
+taskkill /F /PID 19788
+
+/////////////////////
+zull...........
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+    <version>2.2.3.RELEASE</version>
+</dependency>
+
+//////////////
+eureka client depndency...
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    <version>2.2.3.RELEASE</version>
+</dependency>
+
+/////////////////
+note:
+.. eureka server is also known as discovery server 
+STEPS FOR EUREKA:
+1.Create a project with eureka server dependency
+2.Write @EnableEurekaServer above the main class of eureka server project.
+3.Add eureka client depencdency in pom.xml of all clients.
+4.Add @EnableEurekaClient above the main class of all the clients.
+5.To get the naming in the url write @LoadBalanced above the return method of the resttemplate of the project which handles the rest calls.
+6.Replace the url body with the application name.
+//////////////////
+STEPS FOR ZUUL:
+1.Create a project for zuul api-gateway with zull dependency.
+2.add eureka client dependency in api-gateway project.
+3.write @EnableEurekaClient and @EnableZuulProxy above the main class of api-gateway. 
+4.add zull dependencies in rest of the clients (spring-cloud-starter-sleuth).
+note: change application.properties file into .yml format.
+note:  ( strip-prefix: false ) the url name must be same (zull->catelog/rating)
+
